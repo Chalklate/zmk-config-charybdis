@@ -3,7 +3,7 @@ index 6a71e7f8..c7ac8c6b 100644
 --- a/app/CMakeLists.txt
 +++ b/app/CMakeLists.txt
 @@ -98,3 +98,5 @@ target_sources(app PRIVATE src/main.c)
- add_subdirectory(src/display/)
+ add_subdirectory(src/mouse/)
  
  zephyr_cc_option(-Wfatal-errors)
 +
