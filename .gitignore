@@ -7,3 +7,5 @@ config/boards/shields/playground
 !.gitmodules
 !build.yaml
 !zmk-nodefree-config
+!flake.nix
+!flake.lock
