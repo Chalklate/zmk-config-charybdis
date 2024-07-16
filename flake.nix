@@ -85,7 +85,12 @@
         runtimeInputs = nativeBuildInputs;
         runtimeEnv = env;
         text = ''
+          sleep 3
+          mount --mkdir /dev/disk/by-id/usb-Adafruit_nRF_UF2_* /tmp/nicenano
+          sleep 3
           west flash
+          sync
+          umount /tmp/nicenano
         '';
       };
       clean = pkgs.writeShellApplication {

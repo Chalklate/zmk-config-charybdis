@@ -68,7 +68,7 @@ static int rgb_indicator_listener(const zmk_event_t *eh) {
         uint8_t layer = zmk_keymap_highest_layer_active();
         switch (layer)
         {
-        case CANARY: case QWERTY:
+        case CANARY:
             state.layer = false;
             pixels[20] = OFF;
             break;

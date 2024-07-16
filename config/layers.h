@@ -1,12 +1,11 @@
 #pragma once
 
 #define CANARY    0
-#define QWERTY    1
-#define GAME      2
-#define GAMERTY   3
-#define FUN_NUM   4
-#define SYMBOL    5
-#define NAV_ACNT  6
-#define MOUSE     7
-#define SCROLL    8
-#define SYSTEM    9
+#define GAME      1
+#define GAMERTY   2
+#define FUN_NUM   3
+#define SYMBOL    4
+#define NAV_ACNT  5
+#define MOUSE     6
+#define SCROLL    7
+#define SYSTEM    8
