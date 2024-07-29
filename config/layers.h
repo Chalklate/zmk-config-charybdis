@@ -8,4 +8,3 @@
 #define NAV_ACNT  5
 #define MOUSE     6
 #define SCROLL    7
-#define SYSTEM    8

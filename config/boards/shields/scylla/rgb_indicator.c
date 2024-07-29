@@ -76,7 +76,9 @@ static int rgb_indicator_listener(const zmk_event_t *eh) {
             state.layer = true;
             struct led_rgb color;
             switch (layer) {
-            case GAME: case GAMERTY:
+            case GAME:
+                color = YELLOW; break;
+            case GAMERTY:
                 color = WHITE; break;
             case FUN_NUM:
                 color = RED; break;
@@ -88,8 +90,6 @@ static int rgb_indicator_listener(const zmk_event_t *eh) {
                 color = PURPLE; break;
             case SCROLL:
                 color = ORANGE; break;
-            case SYSTEM:
-                color = YELLOW; break;
             default:
                 return 0;
             }

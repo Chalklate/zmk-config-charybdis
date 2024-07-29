@@ -15,9 +15,17 @@
 #define MY_COMMA      lt SCROLL COMMA
 #define MY_DOT        lt MOUSE DOT
 #define MY_SPACE      trm LGUI SPACE
-#define MY_CTRL       kp_sk LCTRL LCTRL
+#define MY_CTRL       trm LCTRL ESC
 #define MY_ALT        kp_sk LALT LALT
 #define MY_GUI        kp_sk LGUI LGUI
+#define MY_C          hml LALT C
+#define MY_R          hml LGUI R
+#define MY_S          hml LCTRL S
+#define MY_T          hml LSHFT T
+#define MY_N          hmr RSHFT N
+#define MY_E          hmr RCTRL E
+#define MY_I          hmr RGUI I
+#define MY_A          hmr LALT A
 
 &sk {
     quick-release;
@@ -52,19 +60,37 @@ ZMK_BEHAVIOR(mlt, hold_tap,
 ZMK_BEHAVIOR(trm, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <280>;
-    quick-tap-ms = <250>;
-    require-prior-idle-ms = <150>;
+    quick-tap-ms = <175>;
+    require-prior-idle-ms = <125>;
     bindings = <&kp>, <&kp>;
+)
+ZMK_BEHAVIOR(hml, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <280>;
+    quick-tap-ms = <175>;
+    require-prior-idle-ms = <125>;
+    bindings = <&kp>, <&kp>;
+    hold-trigger-key-positions = <KEYS_R THUMBS>;
+    hold-trigger-on-release;
+)
+ZMK_BEHAVIOR(hmr, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <280>;
+    quick-tap-ms = <175>;
+    require-prior-idle-ms = <125>;
+    bindings = <&kp>, <&kp>;
+    hold-trigger-key-positions = <KEYS_L THUMBS>;
+    hold-trigger-on-release;
 )
 
 ZMK_COMBO(combo_bspc,     &kp BSPC,          RH0 RU0, ALL,  75)
-ZMK_COMBO(combo_capsword, &caps_word,        LF2 RF2, 0 1,  75)
-ZMK_COMBO(combo_caps,     &kp CAPSLOCK,      LB5 RB5, 0 1,  75)
-ZMK_COMBO(combo_bootload, &bootloader,       RF2 RT2, 0 1, 150, 150)
-ZMK_COMBO(combo_reset,    &sys_reset,        RF3 RT3, 0 1, 150, 150)
-ZMK_COMBO(combo_mb1,      &mkp MB1,          RF1 RF2, 0 1, 150, 150)
-ZMK_COMBO(combo_mb2,      &mkp MB2,          RF2 RF3, 0 1, 150, 150)
-ZMK_COMBO(combo_mb3,      &mkp MB3,      RF1 RF2 RF3, 0 1, 150, 150)
+ZMK_COMBO(combo_capsword, &caps_word,        LF2 RF2,   0,  75)
+ZMK_COMBO(combo_caps,     &kp CAPSLOCK,      LB5 RB5,   0,  75)
+ZMK_COMBO(combo_bootload, &bootloader,       RF2 RT2,   0, 150, 150)
+ZMK_COMBO(combo_reset,    &sys_reset,        RF3 RT3,   0, 150, 150)
+ZMK_COMBO(combo_mb1,      &mkp MB1,          RF1 RF2,   0, 150, 150)
+ZMK_COMBO(combo_mb2,      &mkp MB2,          RF2 RF3,   0, 150, 150)
+ZMK_COMBO(combo_mb3,      &mkp MB3,      RF1 RF2 RF3,   0, 150, 150)
 
 ZMK_SHIFT_MACRO(bt_sel_0, &bt BT_SEL 0, &bt BT_SEL 0 &bt BT_CLR)
 ZMK_SHIFT_MACRO(bt_sel_1, &bt BT_SEL 1, &bt BT_SEL 1 &bt BT_CLR)
@@ -74,15 +100,13 @@ ZMK_SHIFT_MACRO(bt_sel_4, &bt BT_SEL 4, &bt BT_SEL 4 &bt BT_CLR)
 
 /* Keymap */
 
-ZMK_CONDITIONAL_LAYERS(tri_layers_1, FUN_NUM NAV_ACNT, SYSTEM)
-
 ZMK_LAYER(canary,
 // ╭───────────────────────────────────────────────────────────────────────────────╮ ╭───────────────────────────────────────────────────────────────────────────────╮
           &kp ESC       &kp N1       &kp N2       &kp N3       &kp N4       &kp N5           &kp N6       &kp N7       &kp N8       &kp N9       &kp N0    &kp MINUS
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
           &kp TAB        &kp W        &kp L        &kp Y        &kp P        &kp B            &kp F        &kp J        &kp O        &kp U        &kp Q     &kp SEMI
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
-        &kp LSHFT        &kp C        &kp R        &kp S        &kp T        &kp G            &kp M        &kp N        &kp E        &kp I        &kp A     &kp APOS
+        &kp LSHFT        &MY_C        &MY_R        &MY_S        &MY_T        &kp G            &kp M        &MY_N        &MY_E        &MY_I        &MY_A     &kp APOS
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
         &kp LCTRL     &kp LGUI  &lt MOUSE Z &lt SCROLL V        &kp D        &kp K            &kp X        &kp H    &MY_COMMA      &MY_DOT     &kp FSLH    &kp EQUAL
 // ╰───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────╯
@@ -97,9 +121,9 @@ ZMK_LAYER(game,
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
            &trans       &trans       &trans       &trans       &trans       &trans           &trans       &trans       &trans       &trans       &trans       &trans
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
-           &trans       &trans       &trans       &trans       &trans       &trans           &trans       &trans       &trans       &trans       &trans       &trans
+           &trans        &kp C        &kp R        &kp S        &kp T       &trans           &trans        &kp N        &kp E        &kp I        &kp A       &trans
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
-           &trans       &trans        &kp Z        &kp V       &trans       &trans           &trans       &trans    &kp COMMA      &kp DOT       &trans    &tog GAME
+           &trans       &trans        &kp Z        &kp V       &trans       &trans           &trans       &trans    &kp COMMA      &kp DOT       &trans       &trans
 // ╰───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────╯
                                                &kp LCTRL    &kp SPACE    &kp LSHFT           &trans      &kp RET
                                                              &kp LALT     &kp LGUI           &trans
@@ -114,7 +138,7 @@ ZMK_LAYER(gamerty,
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
         &kp LSHFT        &kp G        &kp A        &kp S        &kp D        &kp F            &kp H        &kp J        &kp K        &kp L     &kp SEMI     &kp APOS
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
-        &kp LCTRL        &kp B        &kp Z        &kp X        &kp C        &kp V            &kp N        &kp M    &kp COMMA      &kp DOT     &kp FSLH &tog GAMERTY
+        &kp LCTRL        &kp B        &kp Z        &kp X        &kp C        &kp V            &kp N        &kp M    &kp COMMA      &kp DOT     &kp FSLH       &trans
 // ╰───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────╯
                                                &kp LCTRL    &kp SPACE    &kp LSHFT           &trans      &kp RET
                                                              &kp LALT     &kp LGUI           &trans
@@ -123,7 +147,7 @@ ZMK_LAYER(gamerty,
 
 ZMK_LAYER(fun_num,
 // ╭───────────────────────────────────────────────────────────────────────────────╮ ╭───────────────────────────────────────────────────────────────────────────────╮
-            &none        &none        &none        &none        &none        &none            &none        &none        &none        &none        &none        &none
+            &none        &none        &none        &none        &none        &none     &out OUT_TOG    &bt_sel_0    &bt_sel_1    &bt_sel_2    &bt_sel_3    &bt_sel_4
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
             &none      &kp F12       &kp F7       &kp F8       &kp F9    &kp PSCRN        &kp ASTRK       &kp N7       &kp N8       &kp N9    &kp MINUS        &none
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
@@ -153,7 +177,7 @@ ZMK_LAYER(symbol,
 
 ZMK_LAYER(nav_acnt,
 // ╭───────────────────────────────────────────────────────────────────────────────╮ ╭───────────────────────────────────────────────────────────────────────────────╮
-            &none        &none        &none        &none        &none        &none            &none        &none        &none        &none        &none        &none
+            &none        &none        &none        &none &tog GAMERTY    &tog GAME            &none        &none        &none        &none        &none        &none
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
             &none      &kp INS     &kp HOME       &kp UP      &kp END    &kp PG_UP            &none   &kp RA(N5)    &kp RA(O)    &kp RA(U)    &kp RA(Y)        &none
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
@@ -196,17 +220,3 @@ ZMK_LAYER(scroll,
 //                                        ╰────────────────────────────────────────╯ ╰───────────────────────────╯
 )
 
-ZMK_LAYER(system,
-// ╭───────────────────────────────────────────────────────────────────────────────╮ ╭───────────────────────────────────────────────────────────────────────────────╮
-            &none        &none        &none        &none        &none        &none            &none        &none        &none        &none        &none        &none
-// ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
-            &none        &none        &none        &none &tog GAMERTY    &tog GAME            &none        &none        &none        &none        &none        &none
-// ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
-            &none        &none        &none        &none        &none        &none     &out OUT_USB        &none        &none        &none        &none        &none
-// ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
-            &none        &none        &none        &none        &none        &none     &out OUT_BLE    &bt_sel_0    &bt_sel_1    &bt_sel_2    &bt_sel_3    &bt_sel_4
-// ╰───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────╯
-                                                   &none        &none        &none            &none        &none
-                                                                &none        &none            &none
-//                                        ╰────────────────────────────────────────╯ ╰───────────────────────────╯
-)

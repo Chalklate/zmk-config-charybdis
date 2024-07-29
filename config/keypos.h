@@ -77,3 +77,7 @@
 #define LU1 53
 
 #define RU0 55  // right-thumb bottom row
+
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5 LF0 LF1 LF2 LF3 LF4 LF5 // left-hand keys
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5 RF0 RF1 RF2 RF3 RF4 RF5  // right-hand keys
+#define THUMBS LH2 LH1 LH0 LU1 LU0 RH0 RH1 RU0                                      // thumb keys
