@@ -9,61 +9,37 @@
 #include "helper.h"
 
 // misc aliases
-#define MY_FUN_NUM    mo_sk FUN_NUM LSHFT
-#define MY_NAV_BSPC   lt_hp NAV_ACNT BSPC
-#define MY_SYM_RET    lt_hp SYMBOL RET
+#define MY_RET        lt_hp NAV_ACNT RET
+#define MY_BSPC       lt_hp SYMBOL BSPC
+#define MY_ESC        lt_hp SYMBOL ESC
+#define MY_SPACE      tm FUN_NUM SPACE
 #define MY_COMMA      lt SCROLL COMMA
 #define MY_DOT        lt MOUSE DOT
-#define MY_SPACE      trm LGUI SPACE
-#define MY_CTRL       trm LCTRL ESC
-#define MY_ALT        kp_sk LALT LALT
-#define MY_GUI        kp_sk LGUI LGUI
 #define MY_C          hml LALT C
-#define MY_R          hml LGUI R
+#define MY_R          hml LSHFT R
 #define MY_S          hml LCTRL S
-#define MY_T          hml LSHFT T
-#define MY_N          hmr RSHFT N
+#define MY_T          hml LGUI T
+#define MY_N          hmr RGUI N
 #define MY_E          hmr RCTRL E
-#define MY_I          hmr RGUI I
+#define MY_I          hmr RSHFT I
 #define MY_A          hmr LALT A
 
-&sk {
+&sk {  // sticky-key config
     quick-release;
 };
 
-ZMK_BEHAVIOR(mo_sk, hold_tap,
-    flavor = "hold-preferred";
-    tapping-term-ms = <200>;
-    bindings = <&mo>, <&sk>;
-)
-ZMK_BEHAVIOR(kp_sk, hold_tap,
-    flavor = "hold-preferred";
-    tapping-term-ms = <200>;
-    bindings = <&kp>, <&sk>;
-)
-ZMK_BEHAVIOR(mo_sl, hold_tap,
-    flavor = "hold-preferred";
-    tapping-term-ms = <200>;
-    bindings = <&mo>, <&sl>;
-)
-ZMK_BEHAVIOR(lt_hp, hold_tap,
-    flavor = "hold-preferred";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <200>;
-    bindings = <&mo>, <&kp>;
-)
-ZMK_BEHAVIOR(mlt, hold_tap,
-    flavor = "tap-preferred";
-    tapping-term-ms = <200>;
-    bindings = <&mo>, <&mkp>;
-)
-ZMK_BEHAVIOR(trm, hold_tap,
+&lt {  // layer-tap config
     flavor = "balanced";
     tapping-term-ms = <280>;
     quick-tap-ms = <175>;
-    require-prior-idle-ms = <125>;
-    bindings = <&kp>, <&kp>;
-)
+};
+
+&mt {  // mod-tap config
+    flavor = "balanced";
+    tapping-term-ms = <280>;
+    quick-tap-ms = <175>;
+};
+
 ZMK_BEHAVIOR(hml, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <280>;
@@ -82,15 +58,32 @@ ZMK_BEHAVIOR(hmr, hold_tap,
     hold-trigger-key-positions = <KEYS_L THUMBS>;
     hold-trigger-on-release;
 )
+ZMK_BEHAVIOR(tm, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <280>;
+    quick-tap-ms = <175>;
+    require-prior-idle-ms = <125>;
+    bindings = <&kp>, <&kp>;
+)
+ZMK_BEHAVIOR(lt_hp, hold_tap,
+    flavor = "hold-preferred";
+    tapping-term-ms = <280>;
+    quick-tap-ms = <175>;
+    bindings = <&mo>, <&kp>;
+)
+ZMK_BEHAVIOR(smart_shft, mod_morph,
+    bindings = <&sk LSHFT>, <&caps_word>;
+    mods = <(MOD_LSFT)>;
+)
 
 ZMK_COMBO(combo_bspc,     &kp BSPC,          RH0 RU0, ALL,  75)
 ZMK_COMBO(combo_capsword, &caps_word,        LF2 RF2,   0,  75)
 ZMK_COMBO(combo_caps,     &kp CAPSLOCK,      LB5 RB5,   0,  75)
-ZMK_COMBO(combo_bootload, &bootloader,       RF2 RT2,   0, 150, 150)
-ZMK_COMBO(combo_reset,    &sys_reset,        RF3 RT3,   0, 150, 150)
-ZMK_COMBO(combo_mb1,      &mkp MB1,          RF1 RF2,   0, 150, 150)
-ZMK_COMBO(combo_mb2,      &mkp MB2,          RF2 RF3,   0, 150, 150)
-ZMK_COMBO(combo_mb3,      &mkp MB3,      RF1 RF2 RF3,   0, 150, 150)
+ZMK_COMBO(combo_bootload, &bootloader,       RF2 RT2,   0, 150, 125)
+ZMK_COMBO(combo_reset,    &sys_reset,        RF3 RT3,   0, 150, 125)
+ZMK_COMBO(combo_mb1,      &mkp MB1,          RF1 RF2,   0, 150, 125)
+ZMK_COMBO(combo_mb2,      &mkp MB2,          RF2 RF3,   0, 150, 125)
+ZMK_COMBO(combo_mb3,      &mkp MB3,      RF1 RF2 RF3,   0, 150, 125)
 
 ZMK_SHIFT_MACRO(bt_sel_0, &bt BT_SEL 0, &bt BT_SEL 0 &bt BT_CLR)
 ZMK_SHIFT_MACRO(bt_sel_1, &bt BT_SEL 1, &bt BT_SEL 1 &bt BT_CLR)
@@ -110,8 +103,8 @@ ZMK_LAYER(canary,
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
         &kp LCTRL     &kp LGUI  &lt MOUSE Z &lt SCROLL V        &kp D        &kp K            &kp X        &kp H    &MY_COMMA      &MY_DOT     &kp FSLH    &kp EQUAL
 // ╰───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────╯
-                                                &MY_CTRL    &MY_SPACE  &MY_FUN_NUM     &MY_NAV_BSPC  &MY_SYM_RET
-                                                              &MY_ALT      &MY_GUI          &kp DEL
+                                                 &MY_ESC    &MY_SPACE  &smart_shft         &MY_BSPC      &MY_RET
+                                                             &kp LALT     &kp LGUI          &kp DEL
 //                                        ╰────────────────────────────────────────╯ ╰───────────────────────────╯
 )
 
@@ -125,23 +118,23 @@ ZMK_LAYER(game,
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
            &trans       &trans        &kp Z        &kp V       &trans       &trans           &trans       &trans    &kp COMMA      &kp DOT       &trans       &trans
 // ╰───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────╯
-                                               &kp LCTRL    &kp SPACE    &kp LSHFT           &trans      &kp RET
-                                                             &kp LALT     &kp LGUI           &trans
+                                               &kp LCTRL    &kp SPACE    &kp LSHFT           &trans       &trans
+                                                               &trans       &trans           &trans
 //                                        ╰────────────────────────────────────────╯ ╰───────────────────────────╯
 )
 
 ZMK_LAYER(gamerty,
 // ╭───────────────────────────────────────────────────────────────────────────────╮ ╭───────────────────────────────────────────────────────────────────────────────╮
-          &kp ESC       &kp N5       &kp N1       &kp N2       &kp N3       &kp N4           &kp N6       &kp N7       &kp N8       &kp N9       &kp N0    &kp MINUS
+           &trans       &kp N5       &kp N1       &kp N2       &kp N3       &kp N4           &kp N6       &kp N7       &kp N8       &kp N9       &kp N0       &trans
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
-          &kp TAB        &kp T        &kp Q        &kp W        &kp E        &kp R            &kp Y        &kp U        &kp I        &kp O        &kp P     &kp BSLH
+           &trans        &kp T        &kp Q        &kp W        &kp E        &kp R            &kp Y        &kp U        &kp I        &kp O        &kp P       &trans
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
-        &kp LSHFT        &kp G        &kp A        &kp S        &kp D        &kp F            &kp H        &kp J        &kp K        &kp L     &kp SEMI     &kp APOS
+           &trans        &kp G        &kp A        &kp S        &kp D        &kp F            &kp H        &kp J        &kp K        &kp L     &kp SEMI       &trans
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
-        &kp LCTRL        &kp B        &kp Z        &kp X        &kp C        &kp V            &kp N        &kp M    &kp COMMA      &kp DOT     &kp FSLH       &trans
+           &trans        &kp B        &kp Z        &kp X        &kp C        &kp V            &kp N        &kp M    &kp COMMA      &kp DOT       &trans       &trans
 // ╰───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────╯
-                                               &kp LCTRL    &kp SPACE    &kp LSHFT           &trans      &kp RET
-                                                             &kp LALT     &kp LGUI           &trans
+                                               &kp LCTRL    &kp SPACE    &kp LSHFT           &trans       &trans
+                                                               &trans       &trans           &trans
 //                                        ╰────────────────────────────────────────╯ ╰───────────────────────────╯
 )
 
@@ -198,7 +191,7 @@ ZMK_LAYER(mouse,
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
            &trans       &trans       &trans       &trans       &trans       &trans           &trans       &trans       &trans       &trans       &trans       &trans
 // ├───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────┤
-          &molock    &kp LC(Z)    &kp LC(X)    &kp LC(C)    &kp LC(V)    &kp LC(Y)           &trans   &mkp LCLK &mlt SCROLL MCLK &mkp RCLK       &trans      &molock
+          &molock    &kp LC(Z)    &kp LC(X)    &kp LC(C)    &kp LC(V)    &kp LC(Y)           &trans   &mkp LCLK     &mkp MCLK    &mkp RCLK       &trans      &molock
 // ╰───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────╯
                                                &mkp LCLK    &mkp MCLK    &mkp RCLK           &trans       &trans
                                                                &trans       &trans           &trans
