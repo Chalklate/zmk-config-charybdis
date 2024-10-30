@@ -2,4 +2,4 @@ on: [push, workflow_dispatch]
 
 jobs:
   build:
-    uses: inorichi/zmk-config-charybdis/.github/workflows/build-user-config.yml@main
+    uses: Chalklate/zmk-config-charybdis/.github/workflows/build-user-config.yml@main
