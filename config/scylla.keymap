@@ -1,4 +1,4 @@
-#include "zmk-helpers/helper.h"
+#include "helper.h"
 #include <behaviors.dtsi>
 #include <behaviors/mouse_key_press.dtsi>
 #include <dt-bindings/zmk/keys.h>
@@ -29,33 +29,6 @@
 //#define MY_M          lm NAV_ACNT LGUI
 #define MY_G          hlml 0 G
 #define MY_M          hlmr 0 M
-
-#define ZMK_SHIFT_MORPH(NAME, BINDING, SHIFT_BINDING) \
-/ { \
-  behaviors { \
-    NAME: NAME { \
-      compatible = "zmk,behavior-mod-morph"; \
-      #binding-cells = <0>; \
-      bindings = <BINDING>, <SHIFT_BINDING>; \
-      mods = <(MOD_LSFT|MOD_RSFT)>; \
-    }; \
-  }; \
-};
-
-#define ZMK_MACRO_MORPH(NAME, ...) \
-/ { \
-  macros { \
-    NAME: NAME { \
-      compatible = "zmk,behavior-macro"; \
-      #binding-cells = <0>; \
-      __VA_ARGS__ \
-    }; \
-  }; \
-};
-
-#define ZMK_SHIFT_MACRO(NAME, BINDING, SHIFT_BINDING) \
-ZMK_MACRO_MORPH(macro_ ## NAME, wait-ms = <0>; bindings = <SHIFT_BINDING>;) \
-ZMK_SHIFT_MORPH(NAME, BINDING, &macro_ ## NAME)
 
 &sk {  // sticky-key config
     quick-release;
