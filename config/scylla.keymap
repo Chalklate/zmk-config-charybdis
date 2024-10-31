@@ -7,7 +7,7 @@
 #include <physical_layouts.dtsi>
 #include "layers.h"
 #include "keypos.h"
-#include "helper.h"
+#include "zmk-helpers/helper.h"
 
 // misc aliases
 #define MY_RET        lt_hp NAV_ACNT RET
