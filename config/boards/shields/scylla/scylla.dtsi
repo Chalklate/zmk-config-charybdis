@@ -1,9 +1,9 @@
 #include <dt-bindings/zmk/matrix_transform.h>
-
+//  zmk,matrix_transform = &default_transform;
 / {
     chosen {
         zmk,kscan = &kscan0;
-        zmk,matrix_transform = &default_transform;
+        zmk,physical_layout = &charybdis_6col_layout;
     };
 
     default_transform: keymap_transform_0 {
