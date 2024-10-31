@@ -15,6 +15,9 @@ config ZMK_SPLIT
 
 endif
 
+config ZMK_STUDIO
+    default y
+
 menuconfig RGB_INDICATOR
     bool "RGB indicator"
     default n
