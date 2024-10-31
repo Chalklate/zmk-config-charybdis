@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../zmk-nodefree-config/helper.h"
+#include "zmk-helpers/helper.h"
 
 #define MACRO_CHOOSER6(_1, _2, _3, _4, _5, _6, FUNC, ...) FUNC
 #undef ZMK_COMBO
