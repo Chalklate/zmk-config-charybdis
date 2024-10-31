@@ -146,7 +146,7 @@ ZMK_LAYER(canary,
         &kp LSHFT        &kp Z        &kp X        &kp C        &kp V        &kp B            &kp N        &kp M    &MY_COMMA      &MY_DOT     &kp FSLH    &sk LSHFT
 // ╰───────────────────────────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────────────────────────╯
                                                  &MY_ESC    &MY_SPACE     &MY_SHFT         &MY_BSPC      &MY_RET
-                                                             &kp LALT     &kp LGUI          &kp DEL
+                                                            &kp LALT &studio_unlock         &kp DEL
 //                                        ╰────────────────────────────────────────╯ ╰───────────────────────────╯
 )
 
