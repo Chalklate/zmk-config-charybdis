@@ -30,6 +30,10 @@
 #define MY_G          hlml 0 G
 #define MY_M          hlmr 0 M
 
+#define ZMK_SHIFT_MACRO(NAME, BINDING, SHIFT_BINDING) \
+ZMK_MACRO_MORPH(macro_ ## NAME, wait-ms = <0>; bindings = <SHIFT_BINDING>;) \
+ZMK_SHIFT_MORPH(NAME, BINDING, &macro_ ## NAME)
+
 &sk {  // sticky-key config
     quick-release;
 };
