@@ -116,10 +116,6 @@ jobs:
         working-directory: ${{ env.base_dir }}
         run: west update
 
-      - name: Apply ZMK patches
-        working-directory: ${{ env.base_dir }}/zmk
-        run: git apply --ignore-whitespace ${{ env.base_dir }}/patches/*.patch
-
       - name: West Zephyr export
         working-directory: ${{ env.base_dir }}
         run: west zephyr-export
