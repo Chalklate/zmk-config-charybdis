@@ -14,18 +14,3 @@ config ZMK_SPLIT
     default y
 
 endif
-
-menuconfig RGB_INDICATOR
-    bool "RGB indicator"
-    default n
-
-if RGB_INDICATOR
-
-config LED_STRIP
-    default y
-
-config ZMK_RGB_UNDERGLOW_EXT_POWER
-    bool "RGB underglow toggling also controls external power"
-    default y
-
-endif #RGB_INDICATOR
